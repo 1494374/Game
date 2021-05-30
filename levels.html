@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square Jump</title>
+    <script src="https://kit.fontawesome.com/8b64453c57.js" crossorigin="anonymous"></script>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        /* Style the list (remove margins and bullets, etc) */
+        ul {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-gap: 30px;
+            padding: 2em;
+        }
+
+        /* Style the list items */
+        .level {
+            border: 1px solid #ddd;
+            margin-top: -1px; /* Prevent double borders */
+            background-color: black;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 36px;
+            color: white;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 70px;
+        }
+
+        .level:hover {
+            background-color: gray;
+        }
+
+        /* Style the links */
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Style to center everything */
+        body {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .locked {
+            border: 5px solid black;
+            margin-top: -1px; /* Prevent double borders */
+            background-color: white;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 36px;
+            color: white;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 70px;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+    </style>
+</head>
+<body>
+    <script src="main.js"></script>
+    <h1>Choose your level</h1>
+    <ul>
+        <a id="level1" class="level" href="index.html?level=1"><li>1</li></a>
+        <a id="level2" class="level" href="index.html?level=2"><li>2</li></a>
+        <a id="level3" class="level" href="index.html?level=3"><li>3</li></a>
+        <a id="level4" class="level" href="index.html?level=4"><li>4</li></a>
+        <a id="level5" class="level" href="index.html?level=5"><li>5</li></a>
+        <a id="level6" class="level" href="index.html?level=6"><li>6</li></a>
+        <a id="level7" class="level" href="index.html?level=7"><li>7</li></a>
+        <a id="level8" class="level" href="index.html?level=8"><li>8</li></a>
+        <a id="level9" class="level" href="index.html?level=9"><li>9</li></a>
+    </ul>
+</body>
+<script>
+    var levelsCompleted;
+
+    if (localStorage.levelsCompleted) {
+        levelsCompleted = JSON.parse(localStorage.getItem("levelsCompleted"));
+    } else {
+        levelsCompleted = {
+            1: true,
+            2: false,
+            3: false,
+            4: false,
+            5: false,
+            6: false,
+            7: false,
+            8: false,
+            9: false
+        }
+        localStorage.setItem('levelsCompleted', JSON.stringify(levelsCompleted));
+    }
+
+    var keys = Object.keys(levelsCompleted);
+    
+    keys.forEach(function(key) {
+        if (levelsCompleted[key] === false) {
+            var levelNumber = "level" + key.toString();
+            var levelToChange = document.getElementById(levelNumber);
+            levelToChange.classList.remove("level");
+            levelToChange.classList.add("locked");
+            levelToChange.innerHTML = "<i class='fas fa-lock' style='color: black'></i>";
+        }
+    })
+</script>
+</html>
