@@ -21,7 +21,7 @@ var obstacleCounter = 0;
 var currentLevel;
 
 // Array with all the possible parameters of a level
-var levelParams = JSON.parse(localStorage.getItem('levels'));
+var levelParams = JSON.parse(data); // JSON.parse(localStorage.getItem('levels'));
 var timeAlive = 0;
 timeAlive = setInterval(function() {
     timeAlive++;
